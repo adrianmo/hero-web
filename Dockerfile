@@ -2,8 +2,6 @@ FROM python:3.5
 
 MAINTAINER Adrian Moreno <adrian.moreno@dell.com>
 
-
-
 COPY . /usr/src/app
 
 WORKDIR /usr/src/app

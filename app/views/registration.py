@@ -4,7 +4,7 @@ from django.shortcuts import render
 from formtools.wizard.views import SessionWizardView
 
 from app.forms import RegistrationInitForm, RegistrationAgreeForm, RegistrationHeroForm, RegistrationPasswordForm
-from app.tasks import register_user
+# from app.tasks import register_user
 
 FORMS = [
     ("init", RegistrationInitForm),
@@ -29,8 +29,7 @@ class RegistrationWizard(SessionWizardView):
         form_data = {}
         for form in form_list:
             form_data.update(form.cleaned_data)
-        register_user.delay(form_data)
+        # register_user.delay(form_data)
         return render(self.request, 'registration/done.html', {
             'form_data': form_data,
         })
-
