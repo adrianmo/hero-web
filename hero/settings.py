@@ -43,7 +43,6 @@ class Common(Configuration):
         'bootstrap3',
         'django_countries',
         'formtools',
-        'djcelery',
         'app',
     ]
 
@@ -86,22 +85,6 @@ class Common(Configuration):
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-
-    # Celery settings
-
-    BROKER_URL = "amqp://{user}:{password}@{host}:{port}//".format(
-        user=os.environ.get('RABBITMQ_USER', 'guest'),
-        password=os.environ.get('RABBITMQ_PASSWORD', 'guest'),
-        host=os.environ.get('RABBITMQ_HOST', 'localhost'),
-        port=os.environ.get('RABBITMQ_PORT', '5672'),
-    )
-    BROKER_CONNECTION_MAX_RETRIES = 3
-
-    CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
-    CELERY_ACCEPT_CONTENT = ['json']
-    CELERY_TASK_SERIALIZER = 'json'
-    CELERY_RESULT_SERIALIZER = 'json'
-
 
     # Password validation
     # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
