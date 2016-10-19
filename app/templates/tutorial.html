@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <h2>Tutorial</h2>
+    <hr class="col-md-12">
+
+    <p>VxRack Neutrino nodes is a turnkey multi-service cloud appliance that provides an open source platform for cloud native applications. It delivers web-scale, self-scaling, self-resilient application infrastructure for a secure, elastic private cloud.</p>
+
+    <p>In this tutorial, you will:</p>
+
+    <ul>
+      <li>Get to know the Neutrino UI</li>
+      <li>Access OpenStack and perform a simple operation</li>
+      <li>Explore some of the reports that come out of the box, including Performance, Utilization, Inventory, Alerts and Logs</li>
+    </ul>
+
+    <hr class="col-md-12">
+
+    <h3>Step 1: Getting to know the Neutrino UI</h3>
+
+    <p>Once you receive the registration email with your credentials and the login URL, go ahead and log into Neutrino.</p>
+
+    <img src="{% static 'img/tutorial/neutrino-login.png' %}">
+
+    <h4>Explore the Neutrino dashboard</h4>
+
+    <p>The Dashboard displays the overall VxRack Neutrino system status. Each tile displays a certain aspect of the VxRack Neutrino system. This view provides a quick read-only overview of the health, cloud compute, and storage resources in the VxRack Neutrino system.</p>
+
+    <p>The Dashboard is divided into six tiles:</p>
+
+    <ol>
+      <li>Health - provides health status information on the VxRack Neutrino infrastructure (nodes, disks, networks, storage) and software services (Platform and Cloud Compute).</li>
+      <li>Node Allocation - a donut chart displays the used and unallocated (unused) nodes in the VxRack Neutrino system using colored segments.</li>
+      <li>System - displays information about the installed version, the aggregate memory of all the nodes and the aggregate block storage capacity of all the nodes in the VxRack Neutrino system.</li>
+      <li>Alerts - lists notifications for VxRack Neutrino system components that may require the Cloud Administrator's attention. Each alert listed contains a brief message description, timestamp, and severity.</li>
+      <li>Cloud Compute Service - provides information on the OpenStack environment: Instances (Virtual Machines), vCPUs, Memory and Storage</li>
+      <li>Storage - provides information on block storage capacity use for cloud compute purposes via a donut chart and IOPs/bandwidth information for the block storage system via a dynamic graph</li>
+    </ol>
+
+  <img src="{% static 'img/tutorial/Explore-the-VxRack-Neutrino-Dashboard.png' %}">
+
+    <h4>Open Horizon Dashboard</h4>
+
+  <p>Navigate to Services->Cloud Compute and click on Openstack Dashboard button. This will open a new tab with the Horizon dashboard. You will be already logged in with your user.</p>
+
+  <img src="{% static 'img/tutorial/Open-Horizon-Dashboard.png' %}">
+
+  <hr class="col-md-12">
+
+  <h3>Step 2: Openstack operations</h3>
+
+  <p>Now that you are in the Horizon UI, let's create an instance (VM) in Openstack. Under Compute, click on <b>Instances</b>, and then click on <b>Launch Instance</b></p>
+
+  <img src="{% static 'img/tutorial/Compute-instances.png' %}">
+
+  <p>You are now presented with the Launch Instance wizard. Enter a name for your instance, for example <b>hero-vm</b> and click <b>Next</b>.</p>
+
+  <img src="{% static 'img/tutorial/Launch-Instance-1.png' %}">
+
+  <p>In the next screen you select the image that will be used to boot the VM. Click on the <b>plus (+)</b> sign next to hero-ubuntu and click <b>Next</b>.</p>
+
+  <img src="{% static 'img/tutorial/Launch-Instance-2.png' %}">
+
+  <p>Next screen is where you specify the flavor for the VM, in other words, the resources that the VM will be created with. Select <b>m1.tiny</b> and click <b>Next</b>.</p>
+
+    <img src="{% static 'img/tutorial/Launch-Instance-3.png' %}">
+
+  <p>In the next screen of the wizard you select what networks will the VM be connected to. Select <b>default_network</b> and click <b>Next</b> four times until you get to the <b>Configuration</b> step.</p>
+
+  <img src="{% static 'img/tutorial/Launch-Instance-4.png' %}">
+
+  <p>Copy the following script and paste it into the <b>Customization script</b> window.</p>
+
+  <blockquote>
+    <i>Insert customization script here</i>
+  </blockquote>
+
+  <p>Now click on <b>Launch Instance</b>. After some seconds, the VM will show with status as <b>Active</b> and Power State <b>Running</b>.</p>
+
+  <img src="{% static 'img/tutorial/Instance-Ready.png' %}">
+
+    <hr class="col-md-12">
+
+    <h3>Step 3: Explore the reports</h3>
+
+    <p>Now that your VM is ready, you will go back to the Neutrino UI and explore some of the reports about Performance, Capacity and Chargeback in your Openstack cloud.</p>
+
+  <p>Go back to the tab were you had the Neutrino UI. Then navigate to <b>Reports->Performance</b></p>
+
+  <img src="{% static 'img/tutorial/Reports-Performance.png' %}">
+
+  <h4>Performance Reports</h4>
+
+  <p>Performance Reports are organised in three categories: Infrastructure, Cloud Compute and Accounts. Infrastructure is subdivided in Storage, Network and Platform. Take some time to explore these reports. Here we show the <b>Infrastructure->Network</b> view that provides performance details for all network switches and ports in the platform</p>
+
+  <img src="{% static 'img/tutorial/Reports-Performance-Infrastructure-Network.png' %}">
+
+  <p>Now move to <b>Cloud Compute</b>. This set of reports will show you performance information about your Openstack environment. It is subdivided in Nodes (Hypervisors), Instances, CPU Utilization and Memory Utilization. Feel free to navigate around.</p>
+
+  <h4>Capacity Reports</h4>
+
+  <p>You will now explore the capacity related reports. Navigate to <b>Reports->Capacity</b>.</p>
+
+  <img src="{% static 'img/tutorial/Reports-Capacity.png' %}">
+
+  <p>This report category is subdivided in three different categories: Infrastructure, Cloud Compute and Accounts. It provides information about capacity consumption and forecast of all components in the platform. Feel free to navigate around. Here we show an example screenshot of the <b>"Cloud Compute->Compute Nodes current</b> report". This page provides several tables with the current allocation of all nodes in the system.</p>
+
+  <img src="{% static 'img/tutorial/Reports-Capacity-CloudCompute.png' %}">
+
+  <h4>Chargeback Reports</h4>
+
+  <p>Go back to the tab were you had the Neutrino UI. Then navigate to <b>Reports->Chargeback</b></p>
+
+  <img src="{% static 'img/tutorial/Reports-Chargeback.png' %}">
+
+  <p>You will take a look to the "Default Account" report. Click in <b>Reports->ChargeBack->Default</b>.</p>
+
+  <img src="{% static 'img/tutorial/Click-Chargeback-Account-Default.png' %}">
+
+  <p>This report will show you information about your associated "Default Account" costs. It includes timing reports per Resource type: CPU, Memory, Network and Storage, Total costs per project or total costs per time period. </p>
+
+  <img src="{% static 'img/tutorial/Click-Report-Default-Account.png' %}">
+
+  <p>You can navigate on these reports by clicking on different elements exhibited on this "Account Default" report. This page, "as example", provides detaild information about "mosaic Project" with the cost metrics for this entire project </p>
+
+  <img src="{% static 'img/tutorial/Example-MosaicMe-Chargeback-Project.png' %}">
+
+  <h4>Inventory Reports</h4>
+
+  <p>Go back to the main Neutrino UI page cliking on <b>Reports->Inventory</b> tree option on the left of the screen</p>
+
+  <img src="{% static 'img/tutorial/Reports-Inventory.png' %}">
+
+  <p>Now move to <b>Cloud Compute</b> tab. This set of reports will show you inventory information about your Openstack environment. It is subdivided in Instances (VMs), Networks and Image Sumamary. Feel free to navigate around.</p>
+
+  <img src="{% static 'img/tutorial/Reports-Inventory-Cloud-Compute-Instances.png' %}">
+
+
+
+{% endblock %}

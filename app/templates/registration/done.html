@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2>Thanks for participating!</h2>
+        <hr>
+        <p>You will receive an email with your credentials to start the tutorial and deploying your Hero into the world of Barcelona.</p>
+        <p>&nbsp;</p>
+        <div class="text-center">
+            <a class="btn btn-info btn-lg" href="{% url 'tutorial' %}">Start the tutorial</a>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+
+{% endblock %}

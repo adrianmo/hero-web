@@ -1,0 +1,5 @@
+---
+applications:
+- name: hero
+  host: hero-dev
+  memory: 512M
