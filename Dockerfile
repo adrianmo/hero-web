@@ -1,6 +1,7 @@
 FROM python:3.5
 
-MAINTAINER Adrian Moreno <adrian.moreno@dell.com>
+RUN apt-get update &&\
+    apt-get install libmysqlclient-dev
 
 COPY . /usr/src/app
 
