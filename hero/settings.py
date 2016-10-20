@@ -128,8 +128,8 @@ class Common(Configuration):
 
     # Hero Game
 
-    HERO_API = os.environ['HERO_API']
-    HERO_ADMIN_TOKEN = os.environ['HERO_ADMIN_TOKEN']
+    HERO_API = os.getenv('HERO_API', '')
+    HERO_ADMIN_TOKEN = os.getenv('HERO_ADMIN_TOKEN', '')
 
 
 class Dev(Common):
