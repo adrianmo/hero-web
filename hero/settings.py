@@ -126,6 +126,11 @@ class Common(Configuration):
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+    # Hero Game
+
+    HERO_API = os.environ['HERO_API']
+    HERO_ADMIN_TOKEN = os.environ['HERO_ADMIN_TOKEN']
+
 
 class Dev(Common):
     """

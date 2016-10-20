@@ -49,7 +49,8 @@ And run it with your connection details to RabbitMQ.
 ```
 docker run -d \
   --env-file hero.env \
-  --link rabbitmq  \
+  -e HERO_API=http://localhost:8080 \
+  -e HERO_ADMIN_TOKEN=1234 \
   -p 8000:8080 \
   --name hero-web \
   hero-web
