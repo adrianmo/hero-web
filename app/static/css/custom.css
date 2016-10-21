@@ -1,23 +1,35 @@
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 120px;
+    /* Margin bottom by footer height */
+    margin-bottom: 120px;
+    background: url('../img/bg.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.heroes {
+    text-align: center;
+    /*background: #00a379;*/
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #303030;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #303030;
 }
 
 .container .text-muted {
-  margin: 20px 0;
+    margin: 20px 0;
 }
 
 .step-disabled {
