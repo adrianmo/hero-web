@@ -1,0 +1,24 @@
+language: python
+
+python:
+  - '3.5'
+
+env:
+  global:
+    - secure: "ZLPy7dfalbNaQOQjyoDIETHtth+8dD7JIU8l7cGI7pECpXcaLSUhAd5TCSuak4bCFnvpvttbX/34OoFf8ab45TK30SFavPzN6o3WZgAhZIs5FLTxbArptu5yG4IZ/Dse0UTmL9xk0phIjDqs1zmndorObNXaUIbzXgUZaHTInSkB4HCxg9vZbOEDigKPxfthnXLHgwJ+B9bymzpwhXV/7c9i3a4RKiXfDbrgaF4h1Ye9QQNKa35nWis3RKxgUy038xpud0v7m/U9Mk0RVSmvvwNfMoPsoLh84d+JIyOHrGyST6qsTjo895EtSQixHvniLYzXqMJKAX9n1pEfnIFuYg/hEL6pjy1Ib7rZfRg1w/NhMhM8rWdyF5JiKE6A7vRY5o3KkGXO89QvrU+39Y0+ocD5czxkG1VrOYA2Yt7r4BC0z5C5wROrKNJVtX6O1RL+kqnom3+Yf/NoA/5TqGY0B31o+TMq95E4CWg+xb92D41KoSP17Bt13O0vbDP3usodXGkOiKQd2B4PHiW63/FBozSY4TxHSEwPnpoC7mabRb2VV7xzPC0uVjXEN9GV3KV7oghJta0c330NdRl05J/O927tt0JtygRLh6V5GovIa4MSlbFdQpRFSbl1sib8ndhIb+YjDFYbsWdeXFxrzrSKLecLufBvmf0fFYF2OL4KLqo="
+
+install:
+  - pip3 install --upgrade setuptools pip pbr
+  - pip3 install -r requirements.txt
+
+script:
+  - python3 manage.py test -v 2
+
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    curl --data build=true -X POST https://registry.hub.docker.com/u/emccorp/hero-web/trigger/$TRIGGER_TOKEN
+    fi
+
+notifications:
+  slack: emccaspian:cR8v3N3cwtzCPMgwObikgDhR
