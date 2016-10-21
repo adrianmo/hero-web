@@ -1,1 +1,40 @@
 {% extends 'hero/base.html' %}
+
+{% block hero_content %}
+
+    <h3>Player list</h3>
+
+    {% if not players %}
+        <div class="well">
+            Oops! Looks like nobody is playing yet
+        </div>
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Hero name</th>
+                <th>Hero class</th>
+                <th>Level</th>
+                <th>Next level in</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player in players %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><a href="{% url 'hero_player_details' player.hero_name %}">{{ player.hero_name }}</a>
+                        {% if not player.enabled %}
+                            &nbsp;&nbsp;&nbsp;
+                            <span class="label label-danger">Disabled</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ player.hero_class }}</td>
+                    <td>{{ player.level }}</td>
+                    <td>{{ player.ttl }}</td>
+                </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

@@ -18,7 +18,13 @@
             </div>
 
             <div class="col-md-9">
-                {% block body %}{% endblock %}
+                {% if error %}
+                    <div class="alert alert-dismissible alert-danger">
+                        {{ error }}
+                    </div>
+                {% else %}
+                    {% block hero_content %}{% endblock %}
+                {% endif %}
             </div>
 
         </div>

@@ -1,1 +1,59 @@
 {% extends 'hero/base.html' %}
+
+{% block hero_content %}
+
+    <h3>Player info</h3>
+
+    <dl class="dl-horizontal">
+        <dt>Hero Name</dt>
+        <dd>{{ player.hero_name }}{% if not player.enabled %}&nbsp;&nbsp;&nbsp;
+            <span class="label label-danger">Disabled</span>{% endif %}</dd>
+        <dt>Class</dt>
+        <dd>{{ player.hero_class }}</dd>
+        <dt>Level</dt>
+        <dd>{{ player.level }}</dd>
+        <dt>Next level</dt>
+        <dd>{{ player.ttl }}</dd>
+        <dt>Created at</dt>
+        <dd>{{ player.created_at }}</dd>
+        <dt>Current position</dt>
+        <dd>({{ player.x_pos }}, {{ player.y_pos }})</dd>
+    </dl>
+
+    <h4>Items</h4>
+
+    <dl class="dl-horizontal">
+        <dt>Amulet</dt>
+        <dd>{{ player.equipment.amulet }}</dd>
+        <dt>Boots</dt>
+        <dd>{{ player.equipment.boots }}</dd>
+        <dt>Charm</dt>
+        <dd>{{ player.equipment.charm }}</dd>
+        <dt>Gloves</dt>
+        <dd>{{ player.equipment.gloves }}</dd>
+        <dt>Helm</dt>
+        <dd>{{ player.equipment.helm }}</dd>
+        <dt>Leggings</dt>
+        <dd>{{ player.equipment.leggings }}</dd>
+        <dt>Ring</dt>
+        <dd>{{ player.equipment.ring }}</dd>
+        <dt>Shield</dt>
+        <dd>{{ player.equipment.shield }}</dd>
+        <dt>Tunic</dt>
+        <dd>{{ player.equipment.tunic }}</dd>
+        <dt>Weapon</dt>
+        <dd>{{ player.equipment.weapon }}</dd>
+        <dt>TOTAL</dt>
+        <dd>{{ player.equipment.total }}</dd>
+    </dl>
+
+    <h4>Events</h4>
+
+    <ul>
+        {% for event in events %}
+            <li>{{ event.text }}</li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-default" href="{% url 'hero_player_list' %}" role="button">← Back to player list</a>
+
+{% endblock %}

@@ -1,1 +1,42 @@
 {% extends 'hero/base.html' %}
+
+{% load staticfiles %}
+{% load tags %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            var img = document.getElementById("map");
+            var cnvs = document.getElementById("myCanvas");
+
+            cnvs.style.position = "absolute";
+            cnvs.style.left = img.offsetLeft + "px";
+            cnvs.style.top = img.offsetTop + "px";
+
+            var ctx = cnvs.getContext("2d");
+
+            {% for player in players %}
+                drawPoint({{ player.x_pos }}, {{ player.y_pos }}, '{{ player.enabled | color }}', ctx);
+            {% endfor %}
+
+            function drawPoint(x, y, color, ctx) {
+                ctx.beginPath();
+                ctx.arc(x, y, 1, 0, 2 * Math.PI, false);
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = color;
+                ctx.stroke();
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block hero_content %}
+
+    <h3>Map</h3>
+
+    <p>[disabled users are red, online users are blue]</p>
+
+    <img id="map" src="{% static 'img/map.jpg' %}">
+    <canvas id='myCanvas' width='536px' height='536px'></canvas>
+
+{% endblock %}

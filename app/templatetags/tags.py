@@ -16,3 +16,11 @@ def active(context, pattern_or_urlname):
     if re.search(pattern, path):
         return 'active'
     return ''
+
+
+@register.filter(name='color')
+def bool_to_color(value):
+    if value:
+        return '#0000ff'
+    else:
+        return '#ff0000'
