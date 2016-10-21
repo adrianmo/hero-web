@@ -6,11 +6,12 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 120px;
-    background: url('../img/bg.jpg');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url('../img/bg.jpg') repeat-y;
+    background-size: 100%;
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
 }
 
 /*
@@ -81,4 +82,13 @@ body {
 
 .step-disabled {
     color: #777;
+}
+
+.panel img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 6px;
+    max-width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
