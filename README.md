@@ -1,6 +1,6 @@
-# Registration website
+# Hero website [![Build Status](https://travis-ci.org/VxRackNeutrino/hero-web.svg?branch=master)](https://travis-ci.org/VxRackNeutrino/hero-web)
 
-The registration website is a Django application that allows users to register and participate in the VxRack Neutrino tutorial and play the Hero game. Once the users complete the registration form, this component will send a message to the Registration service that will be in charge of setting up the tutorial environment for the user and mailing him or her the credentials and instructions to get started with it.
+The Hero website is a Django application that allows users to register and participate in the VxRack Neutrino tutorial and play the Hero game. Once the users complete the registration form, this component will send a message to the Registration service that will be in charge of setting up the tutorial environment for the user and mailing him or her the credentials and instructions to get started with it.
 
 Upon each completed registration, this components will generate a JSON message with the following fields.
 
