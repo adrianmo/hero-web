@@ -4,6 +4,7 @@ from django.contrib.auth.forms import SetPasswordForm
 from django_countries.fields import LazyTypedChoiceField
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django_countries import countries
+from app import choices
 
 
 class RegistrationInitForm(forms.Form):
@@ -15,6 +16,7 @@ class RegistrationInitForm(forms.Form):
     # position = forms.CharField(label='Position (optional)', max_length=100, required=False)
     phone = forms.CharField(label='Phone (optional)', max_length=100, required=False)
     twitter_handle = forms.CharField(label='Twitter handle (optional)', max_length=100, required=False)
+
     # github_handle = forms.CharField(label='GitHub username (optional)', max_length=100, required=False)
 
     def __init__(self, *args, **kwargs):
@@ -28,8 +30,8 @@ class RegistrationInitForm(forms.Form):
 
 class RegistrationHeroForm(forms.Form):
     hero_name = forms.CharField(max_length=100)
-    hero_class = forms.CharField(max_length=100)
-    hero_title = forms.CharField(max_length=100)
+    hero_class = forms.ChoiceField(choices=[(x, x) for x in choices.CLASS_CHOICES])
+    hero_title = forms.ChoiceField(choices=[(x, x) for x in choices.TITLE_CHOICES])
 
 
 class RegistrationAgreeForm(forms.Form):
