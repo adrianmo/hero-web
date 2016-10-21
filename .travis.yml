@@ -34,4 +34,4 @@ deploy:
   space: development
   on:
     repo: VxRackNeutrino/hero-web
-    branch: develop
+    branch: master
