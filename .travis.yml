@@ -17,7 +17,7 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    curl --data build=true -X POST https://registry.hub.docker.com/u/emccorp/hero-web/trigger/$TRIGGER_TOKEN
+    curl -X POST https://registry.hub.docker.com/u/emccorp/hero-web/trigger/$TRIGGER_TOKEN/;
     fi
 
 notifications:
