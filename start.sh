@@ -6,4 +6,4 @@ python manage.py migrate
 
 # Start server
 echo "Starting server"
-gunicorn hero.wsgi -b 0.0.0.0:8080 --log-file -
+gunicorn hero.wsgi -b 0.0.0.0:8080 --access-logfile - --log-file -

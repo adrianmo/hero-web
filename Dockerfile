@@ -1,7 +1,7 @@
 FROM python:3.5
 
 RUN apt-get update &&\
-    apt-get install libmysqlclient-dev
+    apt-get install -y libmysqlclient-dev
 
 COPY . /usr/src/app
 
@@ -16,4 +16,4 @@ EXPOSE 8080
 
 ENV DJANGO_CONFIGURATION=Prod
 
-CMD ["gunicorn", "hero.wsgi", "-b", "0.0.0.0:8080", "--log-file", "-"]
+CMD ["gunicorn", "hero.wsgi", "-b", "0.0.0.0:8080", "--access-logfile", "-", "--log-file", "-"]

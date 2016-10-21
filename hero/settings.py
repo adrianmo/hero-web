@@ -107,6 +107,21 @@ class Common(Configuration):
         },
     ]
 
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+            }
+        },
+        'root': {
+            'level': 'INFO',
+            'handlers': ['console']
+        }
+    }
+
     # Internationalization
     # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
