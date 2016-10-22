@@ -5,21 +5,29 @@
 {% block content %}
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2>Thanks for participating!</h2>
-            <hr>
-            <p>Please, take note of your username and Hero token as you will later need them to complete the tutorial
-                and participate in the contest.</p>
-            <ul>
-                <li>Hero name: {{ data.hero_name }}</li>
-                <li>Hero token: {{ token }}</li>
-                <li>Neutrino URL: ...</li>
-                <li>Horizon URL: ...</li>
-            </ul>
-            <p>You should have also received an email with this information.</p>
-            <p>&nbsp;</p>
-            <div class="text-center">
-                <a class="btn btn-info btn-lg" href="{% url 'tutorial' %}">Start the tutorial</a>
-            </div>
+
+            {% if error %}
+                <div class="alert alert-dismissible alert-danger">
+                    {{ error }}
+                </div>
+            {% else %}
+                <h2>Thanks for participating!</h2>
+                <hr>
+                <p>Please, take note of your username and Hero token as you will later need them to complete the
+                    tutorial
+                    and participate in the contest.</p>
+                <ul>
+                    <li>Hero name: {{ data.hero_name }}</li>
+                    <li>Hero token: {{ data.token }}</li>
+                    <li>Neutrino URL: ...</li>
+                    <li>Horizon URL: ...</li>
+                </ul>
+                <p>You should have also received an email with this information.</p>
+                <p>&nbsp;</p>
+                <div class="text-center">
+                    <a class="btn btn-info btn-lg" href="{% url 'tutorial' %}">Start the tutorial</a>
+                </div>
+            {% endif %}
             <p>&nbsp;</p>
         </div>
     </div>
