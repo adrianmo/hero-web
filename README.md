@@ -51,6 +51,9 @@ docker run -d \
   --env-file hero.env \
   -e HERO_API=http://localhost:8080 \
   -e HERO_ADMIN_TOKEN=1234 \
+  -e MAILGUN_API_KEY=key-1234... \
+  -e MAILGUN_SENDER_DOMAIN=example.com \
+  -e DEFAULT_FROM_EMAIL=info@example.com \
   -p 8000:8080 \
   --name hero-web \
   hero-web
