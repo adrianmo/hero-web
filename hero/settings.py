@@ -33,7 +33,6 @@ class Common(Configuration):
     # Application definition
 
     INSTALLED_APPS = [
-        'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
@@ -52,7 +51,6 @@ class Common(Configuration):
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
     ]
@@ -174,6 +172,7 @@ class Prod(Common):
 
     import dj_database_url
     db_from_env = dj_database_url.config()
+    db_from_env['OPTIONS'] = {}
     Common.DATABASES['default'].update(db_from_env)
 
     # Simplified static file serving.

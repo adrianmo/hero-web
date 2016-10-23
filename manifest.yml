@@ -1,5 +1,9 @@
 ---
 applications:
-- name: hero
+- name: hero-web
   host: hero-dev
   memory: 512M
+  services:
+    - hero-mysql
+  env:
+    DJANGO_CONFIGURATION: Prod

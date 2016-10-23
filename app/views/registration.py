@@ -5,7 +5,7 @@ from django.shortcuts import render
 from formtools.wizard.views import SessionWizardView
 import requests
 
-from app.forms import RegistrationInitForm, RegistrationAgreeForm, RegistrationHeroForm, RegistrationPasswordForm
+from app.forms import RegistrationInitForm, RegistrationAgreeForm, RegistrationHeroForm
 from django.conf import settings
 from retrying import retry
 
@@ -17,14 +17,12 @@ FORMS = [
     ("init", RegistrationInitForm),
     ("hero", RegistrationHeroForm),
     ("agree", RegistrationAgreeForm),
-    # ("password", RegistrationPasswordForm),
 ]
 
 TEMPLATES = {
     "init": "registration/init.html",
     "hero": "registration/hero.html",
     "agree": "registration/agree.html",
-    # "password": "registration/password.html",
 }
 
 

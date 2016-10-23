@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+echo "=> Setting up production environment..."
+export DJANGO_CONFIGURATION=Prod
+
 echo "=> Performing database migrations..."
 python3 manage.py migrate
 

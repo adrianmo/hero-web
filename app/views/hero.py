@@ -24,6 +24,9 @@ def events(request):
     except requests.ConnectionError as e:
         logger.error(e)
         error = "Could not connect to Hero API"
+    except Exception as e:
+        logger.error(e)
+        error = str(e)
 
     return render(request, 'hero/events.html', {'events': events, 'error': error})
 
@@ -42,6 +45,9 @@ def player_list(request):
     except requests.ConnectionError as e:
         logger.error(e)
         error = "Could not connect to Hero API"
+    except Exception as e:
+        logger.error(e)
+        error = str(e)
 
     return render(request, 'hero/player_list.html', {'players': players, 'error': error})
 
@@ -65,6 +71,10 @@ def player_details(request, player_name):
     except requests.ConnectionError as e:
         logger.error(e)
         error = "Could not connect to Hero API"
+    except Exception as e:
+        logger.error(e)
+        error = str(e)
+
     return render(request, 'hero/player_details.html', {'error': error})
 
 
@@ -83,4 +93,8 @@ def map(request):
     except requests.ConnectionError as e:
         logger.error(e)
         error = "Could not connect to Hero API"
+    except Exception as e:
+        logger.error(e)
+        error = str(e)
+
     return render(request, 'hero/map.html', {'players': players, 'error': error})

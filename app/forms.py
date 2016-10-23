@@ -1,6 +1,4 @@
 from django import forms
-from django.contrib.auth import password_validation
-from django.contrib.auth.forms import SetPasswordForm
 from django_countries.fields import LazyTypedChoiceField
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django_countries import countries
@@ -41,19 +39,4 @@ class RegistrationAgreeForm(forms.Form):
         super(RegistrationAgreeForm, self).clean()
         if not self.cleaned_data['agree']:
             raise forms.ValidationError("You must agree with the terms and conditions.")
-        return self.cleaned_data
-
-
-class RegistrationPasswordForm(forms.Form):
-    password = forms.CharField(
-        label="Password",
-        widget=forms.PasswordInput,
-        strip=False,
-        help_text=password_validation.password_validators_help_text_html(),
-    )
-
-    def clean(self):
-        super(RegistrationPasswordForm, self).clean()
-        password = self.cleaned_data.get('password')
-        password_validation.validate_password(password)
         return self.cleaned_data
