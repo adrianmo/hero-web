@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# Apply database migrations
-echo "Apply database migrations"
+echo "=> Applying database migrations"
 python manage.py migrate
 
-# Start server
-echo "Starting server"
-gunicorn hero.wsgi -b 0.0.0.0:8080 --access-logfile - --log-file -
+echo "=> Generating static files"
+python3 manage.py collectstatic --noinput
+
+echo "=> Starting server"
+gunicorn hero.wsgi -b 0.0.0.0:8080 --log-file -
