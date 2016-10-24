@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2>Status</h2>
+            <hr class="col-md-12">
+
+            <table class="table table-striped">
+                <tr>
+                    <td>Hero API</td>
+                    <td>{{ hero_api }}</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>{{ database }}</td>
+                </tr>
+                <tr>
+                    <td>Available accounts</td>
+                    <td>{{ available_accounts }}</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+{% endblock %}

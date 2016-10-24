@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
 
-from app.views import index, hero, registration, tutorial
+from app.views import index, hero, registration, tutorial, status
 
 urlpatterns = [
     url(r'^$', index.index, name='index'),
@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^game/players/(?P<player_name>[\w-]+)/$', hero.player_details, name='hero_player_details'),
     url(r'^game/map/$', hero.map, name='hero_map'),
 
-    # Temp
-    url(r'^done/$', TemplateView.as_view(template_name='registration/done.html')),
+    # Status
+    url(r'^status/$', status.status, name='status'),
 ]
