@@ -170,11 +170,11 @@ class Prod(Common):
     # Mailgun
 
     ANYMAIL = {
-        "MAILGUN_API_KEY": os.environ['MAILGUN_API_KEY'],
-        "MAILGUN_SENDER_DOMAIN": os.environ['MAILGUN_SENDER_DOMAIN'],
+        "MAILGUN_API_KEY": os.getenv('MAILGUN_API_KEY', ''),
+        "MAILGUN_SENDER_DOMAIN": os.getenv('MAILGUN_SENDER_DOMAIN', ''),
     }
     EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
-    DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
+    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', '')
 
     # Update database configuration with $DATABASE_URL.
 
