@@ -41,23 +41,23 @@
             <p>The Dashboard is divided into six tiles:</p>
 
             <ol>
-                <li>Health - provides health status information on the VxRack Neutrino infrastructure (nodes, disks,
+                <li><b>Health</b>- provides health status information on the VxRack Neutrino infrastructure (nodes, disks,
                     networks, storage) and software services (Platform and Cloud Compute).
                 </li>
-                <li>Node Allocation - a donut chart displays the used and unallocated (unused) nodes in the VxRack
+                <li><b>Node</b> Allocation - a donut chart displays the used and unallocated (unused) nodes in the VxRack
                     Neutrino system using colored segments.
                 </li>
-                <li>System - displays information about the installed version, the aggregate memory of all the nodes and
+                <li><b>System</b> - displays information about the installed version, the aggregate memory of all the nodes and
                     the aggregate block storage capacity of all the nodes in the VxRack Neutrino system.
                 </li>
-                <li>Alerts - lists notifications for VxRack Neutrino system components that may require the Cloud
+                <li><b>Alerts</b> - lists notifications for VxRack Neutrino system components that may require the Cloud
                     Administrator's attention. Each alert listed contains a brief message description, timestamp, and
                     severity.
                 </li>
-                <li>Cloud Compute Service - provides information on the OpenStack environment: Instances (Virtual
+                <li><b>Cloud Compute Service</b> - provides information on the OpenStack environment: Instances (Virtual
                     Machines), vCPUs, Memory and Storage
                 </li>
-                <li>Storage - provides information on block storage capacity use for cloud compute purposes via a donut
+                <li><b>Storage</b> - provides information on block storage capacity use for cloud compute purposes via a donut
                     chart and IOPs/bandwidth information for the block storage system via a dynamic graph
                 </li>
             </ol>
@@ -66,16 +66,16 @@
 
             <h4>Open Horizon Dashboard</h4>
 
-            <p>Navigate to Services->Cloud Compute and click on Openstack Dashboard button. This will open a new tab
+            <p>Navigate to Services->Cloud Compute and click on OpenStack Dashboard button. This will open a new tab
                 with the Horizon dashboard. You will be already logged in with your user.</p>
 
             <img src="{% static 'img/tutorial/Open-Horizon-Dashboard.png' %}">
 
             <hr class="col-md-12">
 
-            <h3>Step 2: Openstack operations</h3>
+            <h3>Step 2: OpenStack operations</h3>
 
-            <p>Now that you are in the Horizon UI, let's create an instance (VM) in Openstack. Under Compute, click on
+            <p>Now that you are in the Horizon UI, let's create an instance (VM) in OpenStack. Under Compute, click on
                 <b>Instances</b>, and then click on <b>Launch Instance</b></p>
 
             <img src="{% static 'img/tutorial/Compute-instances.png' %}">
@@ -116,7 +116,7 @@
             <h3>Step 3: Explore the reports</h3>
 
             <p>Now that your VM is ready, you will go back to the Neutrino UI and explore some of the reports about
-                Performance, Capacity and Chargeback in your Openstack cloud.</p>
+                Performance, Capacity and Chargeback in your OpenStack cloud.</p>
 
             <p>Go back to the tab were you had the Neutrino UI. Then navigate to <b>Reports->Performance</b></p>
 
@@ -132,7 +132,7 @@
             <img src="{% static 'img/tutorial/Reports-Performance-Infrastructure-Network.png' %}">
 
             <p>Now move to <b>Cloud Compute</b>. This set of reports will show you performance information about your
-                Openstack environment. It is subdivided in Nodes (Hypervisors), Instances, CPU Utilization and Memory
+                OpenStack environment. It is subdivided in Nodes (Hypervisors), Instances, CPU Utilization and Memory
                 Utilization. Feel free to navigate around.</p>
 
             <h4>Capacity Reports</h4>
@@ -155,7 +155,7 @@
 
             <img src="{% static 'img/tutorial/Reports-Chargeback.png' %}">
 
-            <p>You will take a look to the "Default Account" report. Click in <b>Reports->ChargeBack->Default</b>.</p>
+            <p>You will take a look to the "Default Account" report. Click in <b>Reports->Chargeback->Default</b>.</p>
 
             <img src="{% static 'img/tutorial/Click-Chargeback-Account-Default.png' %}">
 
@@ -166,20 +166,20 @@
             <img src="{% static 'img/tutorial/Click-Report-Default-Account.png' %}">
 
             <p>You can navigate on these reports by clicking on different elements exhibited on this "Account Default"
-                report. This page, "as example", provides detaild information about "mosaic Project" with the cost
+                report. This page, "as example", provides detailed information about "mosaic Project" with the cost
                 metrics for this entire project </p>
 
             <img src="{% static 'img/tutorial/Example-MosaicMe-Chargeback-Project.png' %}">
 
             <h4>Inventory Reports</h4>
 
-            <p>Go back to the main Neutrino UI page cliking on <b>Reports->Inventory</b> tree option on the left of the
+            <p>Go back to the main Neutrino UI page and click the <b>Reports->Inventory</b> tree option on the left of the
                 screen</p>
 
             <img src="{% static 'img/tutorial/Reports-Inventory.png' %}">
 
             <p>Now move to <b>Cloud Compute</b> tab. This set of reports will show you inventory information about your
-                Openstack environment. It is subdivided in Instances (VMs), Networks and Image Sumamary. Feel free to
+                OpenStack environment. It is subdivided in Instances (VMs), Networks and Image Summary. Feel free to
                 navigate around.</p>
 
             <img src="{% static 'img/tutorial/Reports-Inventory-Cloud-Compute-Instances.png' %}">
