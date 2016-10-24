@@ -2,7 +2,7 @@
 applications:
 - name: hero-web
   host: hero-dev
-  memory: 512M
+  memory: 1G
   services:
     - hero-mysql
   env:

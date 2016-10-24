@@ -67,7 +67,7 @@ class RegistrationWizard(SessionWizardView):
             raise Exception("Error: %s" % (r.content,))
 
         body = r.json()['token']
-        return body['token']
+        return body
 
     @retry(stop_max_attempt_number=3, wait_fixed=1000)
     def send_email(self, data):
@@ -82,11 +82,12 @@ You can log in with the following credentials.
 
 Email: {email}
 Token: {token}
-Neutrino URL: ...
-Horizon URL: ...
+Neutrino URL: {neutrino_url}
+Horizon URL: {horizon_url}
 
 The VxRack Neutrino team.
-        """.format(name=data['first_name'], email=data['email'], token=data['token'])
+        """.format(name=data['first_name'], email=data['email'], token=data['token'],
+                   neutrino_url=settings.NEUTRINO_URL, horizon_url=settings.HORIZON_URL)
         email = EmailMessage('Welcome to VxRack Neutrino Heroes tutorial', body, to=[data['email']])
         if email.send() != 1:
             raise Exception('Could not send email')

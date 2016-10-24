@@ -15,7 +15,6 @@ from configurations import Configuration, values
 
 
 class Common(Configuration):
-
     # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -144,6 +143,8 @@ class Common(Configuration):
 
     HERO_API = os.getenv('HERO_API', '')
     HERO_ADMIN_TOKEN = os.getenv('HERO_ADMIN_TOKEN', '')
+    NEUTRINO_URL = os.getenv('NEUTRINO_URL', '')
+    HORIZON_URL = os.getenv('HORIZON_URL', '')
 
 
 class Dev(Common):
@@ -159,14 +160,20 @@ class Prod(Common):
     """
     ALLOWED_HOSTS = ["*"]
 
+    # Check needed env vars
+    env_vars = ['HERO_API', 'HERO_ADMIN_TOKEN', 'NEUTRINO_URL', 'HORIZON_URL', 'MAILGUN_API_KEY',
+                'MAILGUN_SENDER_DOMAIN', 'DEFAULT_FROM_EMAIL', 'DATABASE_URL']
+    for env_var in env_vars:
+        assert env_var in os.environ, "{} environment variable is not set".format(env_var)
+
     # Mailgun
 
     ANYMAIL = {
-        "MAILGUN_API_KEY": os.getenv('MAILGUN_API_KEY', ''),
-        "MAILGUN_SENDER_DOMAIN": os.getenv('MAILGUN_SENDER_DOMAIN', ''),
+        "MAILGUN_API_KEY": os.environ['MAILGUN_API_KEY'],
+        "MAILGUN_SENDER_DOMAIN": os.environ['MAILGUN_SENDER_DOMAIN'],
     }
     EMAIL_BACKEND = "anymail.backends.mailgun.MailgunBackend"
-    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', '')
+    DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL']
 
     # Update database configuration with $DATABASE_URL.
 
