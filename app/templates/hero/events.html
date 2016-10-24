@@ -9,8 +9,43 @@
             Oops! Looks like nothing happened yet
         </div>
     {% else %}
-        {% for event in events %}
-            <p>{{ event.text }}</p>
-        {% endfor %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Event</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event.event_time|date }}</td>
+                    <td>{{ event.event_text }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if events.has_other_pages %}
+            <ul class="pagination">
+                {% if users.has_previous %}
+                    <li><a href="?page={{ events.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                {% for i in events.paginator.page_range %}
+                    {% if events.number == i %}
+                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if users.has_next %}
+                    <li><a href="?page={{ events.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+            </ul>
+        {% endif %}
     {% endif %}
 {% endblock %}

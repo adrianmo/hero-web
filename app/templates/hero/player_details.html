@@ -1,5 +1,7 @@
 {% extends 'hero/base.html' %}
 
+{% load tags %}
+
 {% block hero_content %}
 
     <h3>Player info</h3>
@@ -13,7 +15,7 @@
         <dt>Level</dt>
         <dd>{{ player.level }}</dd>
         <dt>Next level</dt>
-        <dd>{{ player.ttl }}</dd>
+        <dd>{{ player.ttl | ttl}}</dd>
         <dt>Created at</dt>
         <dd>{{ player.created_at }}</dd>
         <dt>Current position</dt>
@@ -49,11 +51,23 @@
 
     <h4>Events</h4>
 
-    <ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Event</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for event in events %}
-            <li>{{ event.text }}</li>
+            <tr>
+                <td>{{ event.time|date }}</td>
+                <td>{{ event.text }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+
     <a class="btn btn-default" href="{% url 'hero_player_list' %}" role="button">← Back to player list</a>
 
 {% endblock %}

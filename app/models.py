@@ -10,3 +10,12 @@ class NeutrinoAccount(models.Model):
     class Meta:
         managed = False
         db_table = 'heroneutrinoaccounts'
+
+
+class Event(models.Model):
+    event_text = models.TextField()
+    event_time = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'worldevent'

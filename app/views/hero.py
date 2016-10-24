@@ -1,6 +1,8 @@
 import requests
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.conf import settings
+from app.models import Event
 import logging
 
 logger = logging.getLogger(__name__)
@@ -10,25 +12,21 @@ def info(request):
     return render(request, 'hero/info.html', {})
 
 
-def events(request):
-    error = None
-    events = []
+def event_list(request):
+    events_all = Event.objects.all().order_by('-event_time')
+    paginator = Paginator(events_all, 50)
+
+    page = request.GET.get('page')
     try:
-        r = requests.get("{endpoint}/events".format(endpoint=settings.HERO_API))
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        events = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        events = paginator.page(paginator.num_pages)
 
-        if r.status_code < 200 or r.status_code >= 300:
-            error = "Could not obtain events"
-        else:
-            data = r.json()
-            events = data['events']
-    except requests.ConnectionError as e:
-        logger.error(e)
-        error = "Could not connect to Hero API"
-    except Exception as e:
-        logger.error(e)
-        error = str(e)
-
-    return render(request, 'hero/events.html', {'events': events, 'error': error})
+    return render(request, 'hero/events.html', {'events': events})
 
 
 def player_list(request):

@@ -1,5 +1,7 @@
 {% extends 'hero/base.html' %}
 
+{% load tags %}
+
 {% block hero_content %}
 
     <h3>Player list</h3>
@@ -31,7 +33,7 @@
                     </td>
                     <td>{{ player.hero_class }}</td>
                     <td>{{ player.level }}</td>
-                    <td>{{ player.ttl }}</td>
+                    <td>{{ player.ttl | ttl }}</td>
                 </tr>
                 </tbody>
             {% endfor %}

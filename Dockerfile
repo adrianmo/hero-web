@@ -16,4 +16,4 @@ EXPOSE 8080
 
 ENV DJANGO_CONFIGURATION=Prod
 
-CMD ["gunicorn", "hero.wsgi", "-b", "0.0.0.0:8080", "--access-logfile", "-", "--log-file", "-"]
+CMD ["./start.sh"]

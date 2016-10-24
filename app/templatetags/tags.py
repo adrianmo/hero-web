@@ -24,3 +24,8 @@ def bool_to_color(value):
         return '#0000ff'
     else:
         return '#ff0000'
+
+
+@register.filter(name='ttl')
+def int_to_ttl(value):
+    return 0 if value < 0 else value
