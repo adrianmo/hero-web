@@ -6,6 +6,7 @@ from formtools.wizard.views import SessionWizardView
 import requests
 
 from app.forms import RegistrationInitForm, RegistrationAgreeForm, RegistrationHeroForm
+from app.models import NeutrinoAccount
 from django.conf import settings
 from retrying import retry
 
@@ -36,11 +37,15 @@ class RegistrationWizard(SessionWizardView):
         for form in form_list:
             data.update(form.cleaned_data)
 
-        data['neutrino_account'] = 'default'
-        data['neutrino_username'] = 'user'
         data['neutrino_url'] = settings.NEUTRINO_URL
 
         try:
+            account = self.get_neutrino_account()
+            account.used = True
+            account.save()
+            data['neutrino_account'] = account.heroaccount
+            data['neutrino_username'] = account.herousername
+            data['neutrino_password'] = account.heropassword
             data['token'] = self.register_user(data)
             self.send_email(data)
         except requests.ConnectionError as e:
@@ -54,6 +59,12 @@ class RegistrationWizard(SessionWizardView):
             'data': data,
             'error': error,
         })
+
+    def get_neutrino_account(self):
+        account = NeutrinoAccount.objects.filter(used=False).first()
+        if not account:
+            raise Exception('There is no available Neutrino account. Please contact with an organizer.')
+        return account
 
     @retry(stop_max_attempt_number=3, wait_fixed=1000)
     def register_user(self, data):
@@ -88,6 +99,7 @@ Your credentials to access the VxRack Neutrino are the following.
 
 - Neutrino account: {neutrino_account}
 - Neutrino username: {neutrino_username}
+- Neutrino password: {neutrino_password}
 - Neutrino URL: {neutrino_url}
 - Horizon URL: {neutrino_url}/horizon/
 
@@ -99,6 +111,7 @@ Please, also take note of your Hero name and token as you need them to complete 
 The VxRack Neutrino team.
         """.format(neutrino_account=data['neutrino_account'],
                    neutrino_username=data['neutrino_username'],
+                   neutrino_password=data['neutrino_password'],
                    neutrino_url=data['neutrino_url'],
                    name=data['first_name'],
                    hero_name=data['hero_name'],
