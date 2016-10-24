@@ -161,10 +161,11 @@ class Prod(Common):
     ALLOWED_HOSTS = ["*"]
 
     # Check needed env vars
-    env_vars = ['HERO_API', 'HERO_ADMIN_TOKEN', 'NEUTRINO_URL', 'MAILGUN_API_KEY',
-                'MAILGUN_SENDER_DOMAIN', 'DEFAULT_FROM_EMAIL', 'DATABASE_URL']
-    for env_var in env_vars:
-        assert env_var in os.environ, "{} environment variable is not set".format(env_var)
+    if not Common.DEBUG:
+        env_vars = ['HERO_API', 'HERO_ADMIN_TOKEN', 'NEUTRINO_URL', 'MAILGUN_API_KEY',
+                    'MAILGUN_SENDER_DOMAIN', 'DEFAULT_FROM_EMAIL', 'DATABASE_URL']
+        for env_var in env_vars:
+            assert env_var in os.environ, "{} environment variable is not set".format(env_var)
 
     # Mailgun
 
