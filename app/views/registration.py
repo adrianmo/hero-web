@@ -32,13 +32,17 @@ class RegistrationWizard(SessionWizardView):
 
     def done(self, form_list, form_dict, **kwargs):
         error = None
-        form_data = {}
+        data = {}
         for form in form_list:
-            form_data.update(form.cleaned_data)
+            data.update(form.cleaned_data)
+
+        data['neutrino_account'] = 'default'
+        data['neutrino_username'] = 'user'
+        data['neutrino_url'] = settings.NEUTRINO_URL
 
         try:
-            form_data['token'] = self.register_user(form_data)
-            self.send_email(form_data)
+            data['token'] = self.register_user(data)
+            self.send_email(data)
         except requests.ConnectionError as e:
             logger.error(e)
             error = "Could not connect to Hero API"
@@ -47,7 +51,7 @@ class RegistrationWizard(SessionWizardView):
             error = str(e)
 
         return render(self.request, 'registration/done.html', {
-            'data': form_data,
+            'data': data,
             'error': error,
         })
 
@@ -76,18 +80,29 @@ Hello {name},
 
 Thanks for participating in the VxRack Neutrino Heroes tutorial!
 
-Please, take note of your username and Hero token as you need them to complete the tutorial and participate in the contest.
+You can start the tutorial in the following site.
 
-You can log in with the following credentials.
+http://vxrackneutrinoheroes.com/tutorial
 
-Email: {email}
-Token: {token}
-Neutrino URL: {neutrino_url}
-Horizon URL: {horizon_url}
+Your credentials to access the VxRack Neutrino are the following.
+
+- Neutrino account: {neutrino_account}
+- Neutrino username: {neutrino_username}
+- Neutrino URL: {neutrino_url}
+- Horizon URL: {neutrino_url}/horizon/
+
+Please, also take note of your Hero name and token as you need them to complete the tutorial and participate in the contest.
+
+- Hero name: {hero_name}
+- Token: {token}
 
 The VxRack Neutrino team.
-        """.format(name=data['first_name'], email=data['email'], token=data['token'],
-                   neutrino_url=settings.NEUTRINO_URL, horizon_url=settings.HORIZON_URL)
+        """.format(neutrino_account=data['neutrino_account'],
+                   neutrino_username=data['neutrino_username'],
+                   neutrino_url=data['neutrino_url'],
+                   name=data['first_name'],
+                   hero_name=data['hero_name'],
+                   token=data['token'])
         email = EmailMessage('Welcome to VxRack Neutrino Heroes tutorial', body, to=[data['email']])
         if email.send() != 1:
             raise Exception('Could not send email')
