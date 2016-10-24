@@ -94,3 +94,6 @@ ENV/
 
 # Django static files
 staticfiles/
+
+# Idea files
+.idea
