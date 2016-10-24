@@ -1,7 +1,11 @@
+import requests
 from django import forms
+from django.core.exceptions import ValidationError
+from django.forms.utils import ErrorList
 from django_countries.fields import LazyTypedChoiceField
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django_countries import countries
+from django.conf import settings
 from app import choices
 
 
@@ -30,6 +34,22 @@ class RegistrationHeroForm(forms.Form):
     hero_name = forms.CharField(max_length=100)
     hero_class = forms.ChoiceField(choices=[(x, x) for x in choices.CLASS_CHOICES])
     hero_title = forms.ChoiceField(choices=[(x, x) for x in choices.TITLE_CHOICES])
+
+    def clean(self):
+        cleaned_data = super(RegistrationHeroForm, self).clean()
+        try:
+            r = requests.get("{endpoint}/hero/{name}".format(
+                endpoint=settings.HERO_API,
+                name=cleaned_data['hero_name']
+            ))
+
+            if r.status_code == 200:
+                if 'hero_name' not in self._errors:
+                    self._errors['hero_name'] = ErrorList()
+                self._errors['hero_name'].append('This Hero name is already taken')
+        except Exception as e:
+            raise ValidationError(e)
+        return cleaned_data
 
 
 class RegistrationAgreeForm(forms.Form):
