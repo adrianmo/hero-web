@@ -29,3 +29,12 @@ def bool_to_color(value):
 @register.filter(name='ttl')
 def int_to_ttl(value):
     return 0 if value < 0 else value
+
+
+@register.filter(name='timestamp')
+def str_to_timestamp(value):
+    try:
+        from datetime import datetime
+        return datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
+    except:
+        return value

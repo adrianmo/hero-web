@@ -22,7 +22,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
-
+    {% block styles %}{% endblock %}
 
 </head>
 
@@ -40,7 +40,7 @@
                     <!-- <li class="{% active '^/$' %}"><a href="{% url 'index' %}">Home</a></li> -->
                     <li class="{% active 'registration' %}"><a href="{% url 'registration' %}">Registration</a></li>
                     <li class="{% active 'tutorial' %}"><a href="{% url 'tutorial' %}">Tutorial</a></li>
-                    <li class="{% active 'hero' %}"><a href="{% url 'hero_info' %}">Heroes Game</a></li>
+                    <li class="{% active '^/game' %}"><a href="{% url 'hero_info' %}">Heroes Game</a></li>
                 </ul>
             </nav>
         </div>

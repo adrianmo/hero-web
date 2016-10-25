@@ -12,10 +12,12 @@
             <span class="label label-danger">Disabled</span>{% endif %}</dd>
         <dt>Class</dt>
         <dd>{{ player.hero_class }}</dd>
+        <dt>Title</dt>
+        <dd>{{ player.hero_title }}</dd>
         <dt>Level</dt>
         <dd>{{ player.level }}</dd>
         <dt>Next level</dt>
-        <dd>{{ player.ttl | ttl}}</dd>
+        <dd>{{ player.ttl | ttl}} seconds</dd>
         <dt>Created at</dt>
         <dd>{{ player.created_at }}</dd>
         <dt>Current position</dt>
@@ -61,7 +63,7 @@
         <tbody>
         {% for event in events %}
             <tr>
-                <td>{{ event.time|date }}</td>
+                <td>{{ event.time|timestamp|date:'Y-m-d H:i' }}</td>
                 <td>{{ event.text }}</td>
             </tr>
         {% endfor %}

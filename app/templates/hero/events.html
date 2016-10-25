@@ -19,7 +19,7 @@
             <tbody>
             {% for event in events %}
                 <tr>
-                    <td>{{ event.event_time|date }}</td>
+                    <td>{{ event.event_time|date:'Y-m-d H:i' }}</td>
                     <td>{{ event.event_text }}</td>
                 </tr>
             {% endfor %}

@@ -33,7 +33,7 @@ class RegistrationInitForm(forms.Form):
 class RegistrationHeroForm(forms.Form):
     hero_name = forms.CharField(max_length=100)
     hero_class = forms.ChoiceField(choices=[(x, x) for x in choices.CLASS_CHOICES])
-    hero_title = forms.ChoiceField(choices=[(x, x) for x in choices.TITLE_CHOICES])
+    hero_title = forms.CharField(max_length=100, help_text='e.g. The Hand of the Storm, The Enigma of the Rock')
 
     def clean(self):
         cleaned_data = super(RegistrationHeroForm, self).clean()

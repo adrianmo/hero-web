@@ -1,6 +1,26 @@
 {% extends 'hero/base.html' %}
 
+{% load staticfiles %}
 {% load tags %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dataTables.bootstrap.min.css' %}">
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#playerList').DataTable({
+                "bLengthChange": false,
+                "order": [[2, "desc"]],
+                "columnDefs": [
+                    {"orderable": false, "targets": [0, 1, 2, 3]}
+                ]
+            });
+        });
+    </script>
+{% endblock %}
 
 {% block hero_content %}
 
@@ -11,10 +31,9 @@
             Oops! Looks like nobody is playing yet
         </div>
     {% else %}
-        <table class="table table-striped">
+        <table id="playerList" class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
                 <th>Hero name</th>
                 <th>Hero class</th>
                 <th>Level</th>
@@ -24,7 +43,6 @@
             <tbody>
             {% for player in players %}
                 <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
                     <td><a href="{% url 'hero_player_details' player.hero_name %}">{{ player.hero_name }}</a>
                         {% if not player.enabled %}
                             &nbsp;&nbsp;&nbsp;
@@ -33,10 +51,10 @@
                     </td>
                     <td>{{ player.hero_class }}</td>
                     <td>{{ player.level }}</td>
-                    <td>{{ player.ttl | ttl }}</td>
+                    <td>{{ player.ttl | ttl }} seconds</td>
                 </tr>
-                </tbody>
             {% endfor %}
+            </tbody>
         </table>
     {% endif %}
 {% endblock %}

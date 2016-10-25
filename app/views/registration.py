@@ -55,6 +55,8 @@ class RegistrationWizard(SessionWizardView):
             logger.error(e)
             error = str(e)
 
+        logger.info("New registration: {}".format(data))
+
         return render(self.request, 'registration/done.html', {
             'data': data,
             'error': error,
