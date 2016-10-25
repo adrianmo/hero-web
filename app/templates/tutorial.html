@@ -103,7 +103,17 @@
             <p>Copy the following script and paste it into the <b>Customization script</b> window.</p>
 
             <blockquote>
-                <i>Insert customization script here</i>
+                <i>
+#!/bin/bash
+set -x
+
+# Activate hero
+export HERO_NAME=Enter-Your-Hero-Name-Here
+# Hero token you received after registration
+export HERO_TOKEN=Your-Emailed-Token-Here
+
+curl -si -H "X-Auth-Token: ${HERO_TOKEN}" http://192.168.104.10/hero/${HERO_NAME}/activate
+                </i>
             </blockquote>
 
             <p>Now click on <b>Launch Instance</b>. After some seconds, the VM will show with status as <b>Active</b>
