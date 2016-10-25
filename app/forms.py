@@ -1,12 +1,15 @@
 import requests
 from django import forms
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.forms.utils import ErrorList
 from django_countries.fields import LazyTypedChoiceField
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django_countries import countries
 from django.conf import settings
 from app import choices
+
+alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
 
 
 class RegistrationInitForm(forms.Form):
@@ -31,7 +34,7 @@ class RegistrationInitForm(forms.Form):
 
 
 class RegistrationHeroForm(forms.Form):
-    hero_name = forms.CharField(max_length=100)
+    hero_name = forms.CharField(max_length=100, validators=[alphanumeric])
     hero_class = forms.ChoiceField(choices=[(x, x) for x in choices.CLASS_CHOICES])
     hero_title = forms.CharField(max_length=100, help_text='e.g. The Hand of the Storm, The Enigma of the Rock')
 
