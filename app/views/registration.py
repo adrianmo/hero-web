@@ -99,11 +99,11 @@ http://vxrackneutrinoheroes.com/tutorial
 
 Your credentials to access the VxRack Neutrino are the following.
 
-- Neutrino account: {neutrino_account}
-- Neutrino username: {neutrino_username}
-- Neutrino password: {neutrino_password}
-- Neutrino URL: {neutrino_url}
+- OpenStack domain: {neutrino_account}
+- OpenStack username: {neutrino_username}
+- OpenStack password: {neutrino_password}
 - Horizon URL: {neutrino_url}/horizon/
+- Neutrino URL: {neutrino_url}
 
 Please, also take note of your Hero name and token as you need them to complete the tutorial and participate in the contest.
 

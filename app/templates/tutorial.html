@@ -16,21 +16,82 @@
             <p>In this tutorial, you will:</p>
 
             <ul>
-                <li>Get to know the Neutrino UI</li>
-                <li>Access OpenStack and perform a simple operation</li>
-                <li>Explore some of the reports that come out of the box, including Performance, Utilization, Inventory,
-                    Alerts and Logs
-                </li>
+                <li>Access OpenStack and activate your Hero</li>
+                <li>Get to know VxRack Neutrino</li>
             </ul>
 
             <hr class="col-md-12">
 
-            <h3>Step 1: Getting to know the Neutrino UI</h3>
+            <h3>Step 1: Access OpenStack and activate your Hero</h3>
 
-            <p>Once you receive the registration email with your credentials and the login URL, go ahead and log into
-                Neutrino.</p>
+            <p>Once you receive the <a href="{% url 'registration' %}">registration</a> email with your credentials. Use the Horizon URL to access OpenStack.</p>
 
-            <img src="{% static 'img/tutorial/neutrino-login.png' %}">
+            <img src="{% static 'img/tutorial/horizon-login.png' %}" style="width: 30%">
+
+            <p>Replace "hero_XYZ" with your domain and username received in the registration email.</p>
+
+            <p>Now that you are in the Horizon UI, let's create an instance (VM) in OpenStack. Under Compute, click on
+                <b>Instances</b>, and then click on <b>Launch Instance</b></p>
+
+            <img src="{% static 'img/tutorial/Compute-instances.png' %}">
+
+            <p>You are now presented with the Launch Instance wizard. Enter a name for your instance, for example <b>hero-vm</b>
+                and click <b>Next</b>.</p>
+
+            <img src="{% static 'img/tutorial/Launch-Instance-1.png' %}">
+
+            <p>In the next screen you will select the image that will be used to boot the VM. Click on the <b>plus (+)</b>
+                sign next to "hero-ubuntu" and click <b>Next</b>.</p>
+
+            <img src="{% static 'img/tutorial/Launch-Instance-2.png' %}">
+
+            <p>In the next screen is where you specify the flavor for the VM, in other words, the resources that the VM will be
+                created with. Select <b>m1.tiny</b> and click <b>Next</b>.</p>
+
+            <img src="{% static 'img/tutorial/Launch-Instance-3.png' %}">
+
+            <p>In the next screen of the wizard you will select what networks will the VM be connected to. Select <b>default_network</b>.</p>
+
+            <img src="{% static 'img/tutorial/Launch-Instance-4.png' %}">
+
+            <p>Click <b>Next</b> four times until you get to the <b>Configuration</b> step.</p>
+
+            <img src="{% static 'img/tutorial/Launch-Instance-5.png' %}" width="80%">
+
+            <p>Copy the following script and paste it into the <b>Customization script</b> window.</p>
+
+            <blockquote>
+                <i>
+                  #!/bin/bash<br>
+                  set -x<br>
+                  <br>
+                  # Activate hero<br>
+                  export HERO_NAME=<b style="color:red">Enter-Your-Hero-Name-Here</b><br>
+                  # Hero token you received after registration<br>
+                  export HERO_TOKEN=<b style="color:red">Your-Emailed-Token-Here</b><br>
+                  <br>
+                  curl -si -H "X-Auth-Token: ${HERO_TOKEN}" http://192.168.104.10/hero/${HERO_NAME}/activate<br>
+                </i>
+            </blockquote>
+
+            <p>Replace the values with your <b style="color:red">Hero name and token</b> from the registration email.</p>
+
+            <p>Now click on <b>Launch Instance</b>. After a few seconds, the VM will show with status as <b>Active</b>
+                and Power State <b>Running</b>.</p>
+
+            <img src="{% static 'img/tutorial/Instance-Ready.png' %}">
+
+            <p>After a few minutes, your Hero should be active and playing the game.</p>
+
+            <hr class="col-md-12">
+
+            <h3>Step 2: Getting to know VxRack Neutrino</h3>
+
+            <p>Now, we are going to log into the Neutrino system that is located in the Dell EMC booth and take a look at how the system is performing today.</p>
+
+            <p>Click on the Neutrino URL on the registration email and login using <b style="color: red;">"default" as Account</b> and your provided OpenStack username and password. This user has the Cloud Monitor role and is able to explore all the reports in the system.</p>
+
+            <img src="{% static 'img/tutorial/neutrino-login.png' %}" style="width: 30%">
 
             <h4>Explore the Neutrino dashboard</h4>
 
@@ -64,66 +125,8 @@
 
             <img src="{% static 'img/tutorial/Explore-the-VxRack-Neutrino-Dashboard.png' %}">
 
-            <h4>Open Horizon Dashboard</h4>
 
-            <p>Navigate to Services->Cloud Compute and click on OpenStack Dashboard button. This will open a new tab
-                with the Horizon dashboard. You will be already logged in with your user.</p>
-
-            <img src="{% static 'img/tutorial/Open-Horizon-Dashboard.png' %}">
-
-            <hr class="col-md-12">
-
-            <h3>Step 2: OpenStack operations</h3>
-
-            <p>Now that you are in the Horizon UI, let's create an instance (VM) in OpenStack. Under Compute, click on
-                <b>Instances</b>, and then click on <b>Launch Instance</b></p>
-
-            <img src="{% static 'img/tutorial/Compute-instances.png' %}">
-
-            <p>You are now presented with the Launch Instance wizard. Enter a name for your instance, for example <b>hero-vm</b>
-                and click <b>Next</b>.</p>
-
-            <img src="{% static 'img/tutorial/Launch-Instance-1.png' %}">
-
-            <p>In the next screen you select the image that will be used to boot the VM. Click on the <b>plus (+)</b>
-                sign next to hero-ubuntu and click <b>Next</b>.</p>
-
-            <img src="{% static 'img/tutorial/Launch-Instance-2.png' %}">
-
-            <p>Next screen is where you specify the flavor for the VM, in other words, the resources that the VM will be
-                created with. Select <b>m1.tiny</b> and click <b>Next</b>.</p>
-
-            <img src="{% static 'img/tutorial/Launch-Instance-3.png' %}">
-
-            <p>In the next screen of the wizard you select what networks will the VM be connected to. Select <b>default_network</b>
-                and click <b>Next</b> four times until you get to the <b>Configuration</b> step.</p>
-
-            <img src="{% static 'img/tutorial/Launch-Instance-4.png' %}">
-
-            <p>Copy the following script and paste it into the <b>Customization script</b> window.</p>
-
-            <blockquote>
-                <i>
-                  #!/bin/bash<br>
-                  set -x<br>
-                  <br>a
-                  # Activate hero<br>
-                  export HERO_NAME=Enter-Your-Hero-Name-Here<br>
-                  # Hero token you received after registration<br>
-                  export HERO_TOKEN=Your-Emailed-Token-Here<br>
-                  <br>
-                  curl -si -H "X-Auth-Token: ${HERO_TOKEN}" http://192.168.104.10/hero/${HERO_NAME}/activate<br>
-                </i>
-            </blockquote>
-
-            <p>Now click on <b>Launch Instance</b>. After some seconds, the VM will show with status as <b>Active</b>
-                and Power State <b>Running</b>.</p>
-
-            <img src="{% static 'img/tutorial/Instance-Ready.png' %}">
-
-            <hr class="col-md-12">
-
-            <h3>Step 3: Explore the reports</h3>
+            <h4>Explore the reports</h4>
 
             <p>Now that your VM is ready, you will go back to the Neutrino UI and explore some of the reports about
                 Performance, Capacity and Chargeback in your OpenStack cloud.</p>
@@ -194,7 +197,7 @@
 
             <img src="{% static 'img/tutorial/Reports-Inventory-Cloud-Compute-Instances.png' %}">
 
-            <p>Do you believe this is the end? This is just a small part of what you can discover around VxRack
+            <p>Can you believe this is the end? This is just a small part of what you can discover around VxRack
                 Neutrino. Feel free to navigate any other section of the UI, like Logs, Health reports, etc.</p>
 
             <p>We really appreciate your interest and if you have any questions, please go to the Dell EMC booth and we
@@ -204,7 +207,7 @@
 
             <p>&nbsp;</p>
 
-            <p class="text-center"><a class="btn btn-lg btn-warning" href="{% url 'hero_info' %}" role="button">Check out your Hero!</a></p>
+            <p class="text-center"><a class="btn btn-lg btn-warning" href="{% url 'hero_player_list' %}" role="button">Check out your Hero!</a></p>
 
             <p>&nbsp;</p>
         </div>
